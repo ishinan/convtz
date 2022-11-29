@@ -156,7 +156,8 @@ class ConvertTimezone:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, 
-                                     description='Convert epoch time to multiple timezone timestamps')
+                                     description='Convert epoch time to multiple timezone timestamps',
+                                     version='0.3')
     #requiredGroup = parser.add_argument_group('Required arguments(one of them)')
     requiredGroup = parser.add_argument_group()
     requiredGroup.add_argument("-e", "--epoch", 
@@ -197,9 +198,6 @@ if __name__ == "__main__":
                         dest="print_debug", 
                         #default=argparse.SUPPRESS,
                         help="Print parsed arguments")
-    requiredGroup.add_argument("-v", "--version", 
-                        action='version', 
-                        version='%(prog)s 0.4')
 
     # parse_args() to returns options and positional args 
     args_results = parser.parse_args()
