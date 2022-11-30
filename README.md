@@ -52,7 +52,7 @@ US/Mountain
 US/Pacific
 US/Samoa
 ```
-## Example 2: List(-l) timezones with a fileter(-z) 
+## Example 2: List(-l) timezones with a filter(-z) 
 ```text
 $ python convtz.py  -l -z Canada
 Canada/Atlantic
@@ -64,7 +64,25 @@ Canada/Pacific
 Canada/Saskatchewan
 Canada/Yukon
 ```
-## Example 3: Date/Time based on a timezone(-z)
+## Example 3: Print the current time in your local timezone
+
+- Using `grep -P` option with lookbehind: `ls -l  /etc/localtime | grep -oP "(?<=zoneinfo/).+$"` 
+- Using `grep -E` option: `ls -l  /etc/localtime | grep -oE "[^/]+$"` 
+```
+$ ls -l /etc/localtime
+lrwxr-xr-x 1 root wheel 45 Sep 28 12:37 /etc/localtime -> /var/db/timezone/zoneinfo/America/Los_Angeles
+$ python convtz.py -z $( ls -l  /etc/localtime | grep -oE [^/]+$ )
+(epoch:1669770637)
+Selected Timezone: America/Los_Angeles
+2022-11-29 17:10:37 PST-0800
+-------------------------
+2022-11-30 01:10:37 UTC+0000
+2022-11-29 20:10:37 EST-0500
+2022-11-29 17:10:37 PST-0800
+```
+
+## Example 4: Date/Time based on a timezone(-z)
+
 ```text
 $ python convtz.py -t "2019-06-11 02:13:40" -z Asia/Tokyo
 Selected Timezone: Asia/Tokyo
@@ -74,7 +92,9 @@ Selected Timezone: Asia/Tokyo
 2019-06-10 13:13:40 EDT-0400
 2019-06-10 10:13:40 PDT-0700
 ```
-## Example 4: Date/Time based on an epoch time(-e) with a timezone(-z)
+
+## Example 5: Date/Time based on an epoch time(-e) with a timezone(-z)
+
 ```text
 $ python convtz.py -e 1560186820 -z Asia/Tokyo
 Selected Timezone: Asia/Tokyo
@@ -84,7 +104,8 @@ Selected Timezone: Asia/Tokyo
 2019-06-10 13:13:40 EDT-0400
 2019-06-10 10:13:40 PDT-0700
 ```
-## Example 5: Date/Time based on an epoch time(-e) without a specific timezone
+## Example 6: Date/Time based on an epoch time(-e) without a specific timezone
+
 ```text
 $ python convtz.py -e 1560186820
 2019-06-10 17:13:40 UTC+0000
