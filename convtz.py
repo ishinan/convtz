@@ -24,6 +24,12 @@ import calendar
 
 import pytz
 
+def set_to_second(num):
+    num_str = str(num)
+    if len(num_str) > 10:
+        return int(num_str[:10])
+    return num
+
 class ConvertTimezone:
     @classmethod
     def list_timezones(cls, filter_tz=None):
@@ -211,7 +217,7 @@ if __name__ == "__main__":
     # Check if epock_time is specified
     epoch_timestamp = None
     if isinstance(args_results.epoch_time, float):
-        epoch_timestamp =  args_results.epoch_time
+        epoch_timestamp = set_to_second(args_results.epoch_time)
 
     # Check if a timezone is specified
     filter_timezone = None
